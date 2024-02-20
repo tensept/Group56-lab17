@@ -12,6 +12,7 @@ interface webSocketMessage {
     content: string;
     timestamp: string;
     type: messageType;
+    connectedUser: number;
 }
 interface webSocketState {
     isConnected: boolean;
@@ -22,7 +23,8 @@ interface webSocketState {
 const initialState: webSocketState = {
     isConnected: false,
     stompClient: undefined,
-    messages: []
+    messages: [],
+
 };
 
 export const webSocketSlice = createSlice({
@@ -37,7 +39,7 @@ export const webSocketSlice = createSlice({
         },
         setStompClient: (state, action : PayloadAction<Stomp.Client>) => {
             state.stompClient = action.payload;
-        }
+        },
     },
 });
 
